@@ -1,27 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
+import "./formattedDate";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
-  const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
-    console.log(response.data);
     setWeatherData({
       ready: true,
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
-      City: response.data.name,
-      date: "Wednesday 7:00",
+      city: response.data.name,
+      date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
       iconUrl: "https://ssl.gstatic.com/onebox/weather/64/cloudy.png",
     });
-  }
-  function updateCity(event) {
-    event.preventDefault();
-    setCity(event.target.value);
   }
   if (weatherData.ready) {
     return (
@@ -34,7 +29,6 @@ export default function Weather(props) {
                 placeholder="Search for a city"
                 className="form-control"
                 autoFocus="on"
-                onChange={updateCity}
               />
             </div>
             <div className="col-3">
@@ -48,7 +42,9 @@ export default function Weather(props) {
         </form>
         <h1>{weatherData.city}</h1>
         <ul>
-          <li>{weatherData.date}</li>
+          <li>
+            <formattedDate date={weatherData.date} />
+          </li>
           <li className="text-capitalize">{weatherData.description}</li>
         </ul>
         <div className="row mt-3">
@@ -69,8 +65,8 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    const apikey = "597c40c39084687093b091cd48b366f8";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`;
+    const apikey = "90ta40de2b3f7bocf6acde793ab3484a";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?q=${props.defaultCity}&key=${apikey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
     return "Loading...";
   }
