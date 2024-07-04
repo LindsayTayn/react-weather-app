@@ -13,7 +13,7 @@ export default function Weather(props) {
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
-      city: response.data.city,
+      city: response.data.name,
       date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
       iconUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
@@ -22,7 +22,6 @@ export default function Weather(props) {
 
   function search() {
     const apikey = "f8e6a9e3d6fde87cb38868da460b1371";
-    //let apiUrl = `https://api.shecodes.io/weather/v1/current?q=${city}&key=${apikey}&units=metric`;
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
