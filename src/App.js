@@ -8,7 +8,7 @@ export default function App() {
         <Weather defaultCity="Brussels" />
         <footer>
           {" "}
-          This project is created by Lindsay Tayenne and is open sourced on {""}
+          This project is coded by Lindsay Tayenne and is open sourced on {""}
           <a
             href="https://github.com/LindsayTayn/react-weather-app"
             target="blank"
