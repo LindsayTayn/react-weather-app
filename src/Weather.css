@@ -2,15 +2,19 @@
   border: 1px solid #dadde1;
   color: rgb (135, 135, 135);
   padding: 16px;
-
-  border-radius: 4px;
+  border-radius: 25px;
+  background: linear-gradient(
+    163deg,
+    rgb(83, 170, 250) 0%,
+    rgb(139, 102, 241) 100%
+  );
 }
 .Weather form {
   margin-bottom: 20px;
 }
 
 .Weather h1 {
-  color: #878787;
+  color: #040404;
   margin: 20px 0 0 0;
   font-size: 24px;
   font-weight: 100;
